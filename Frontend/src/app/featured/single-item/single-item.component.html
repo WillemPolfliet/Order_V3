@@ -1,0 +1,95 @@
+<!-- <div class="row">
+  <div  class="col-12">
+    <h5>Give the Id of the item to view set item</h5>
+    <app-item-search></app-item-search>
+    <button>show item by id</button>
+  </div>
+</div> -->
+<div>
+
+  <div class="row form-group col-12 TitleField">
+    <!-- 
+      <p>title</p>
+    <p>ID</p>
+   -->
+  </div>
+
+  <div class="row inputFields" *ngIf="(givenItem$ | async) as givenItem else loading">
+    <div class="col-3">
+      <div class="form-group image_card">
+        <p>
+        <!--{{givenItem.foto}}-->
+      </p>
+      </div>
+    </div>
+
+    <div class="col-9" >
+      <div class="row form-group ">
+        <div class="col-12  ">
+          <label for="ItemNameInputField">Item Name</label>
+          <input type="text" class="form-control item-name-input" placeholder="Name" value="{{givenItem.name}}" #itemName>
+        </div>
+      </div>
+
+      <div class="row form-group ">
+        <div class="col-12  ">
+          <label for="ItemDescriptionInputField">Item Description</label>
+          <input type="text" class="form-control item-description-input" placeholder="Description" value="{{givenItem.description}}" #itemDescription >
+        </div>
+      </div>
+
+      <div class="row ">
+        <div class="col-6">
+          <div class="form-group">
+
+            <label for="ItemPriceInputField">Item Price</label>
+            <input type="text" class="form-control item-price-input" placeholder="Price" value="{{givenItem.price}}"  #itemPrice>
+          </div>
+        </div>
+        <div class="col-6">
+
+          <div class="form-group">
+            <label for="ItemAmountInputField">Amount in stock</label>
+            <input type="text" class="form-control item-amount-input" placeholder="Amount in stock" value="{{givenItem.amountOfStock}}" #itemAmount>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+  </div>
+
+  <div class="row">
+    <div *ngIf="(givenItem$.name = null | async) else loading">
+      <div class="form-group col-12 text-center"  >
+
+        <button class="add-item-button"(click)="add(itemName.value,itemDescription.value,itemPrice.value,itemAmount.value);">
+          add
+        </button>
+
+        <button class="clear-item-button"(click)="clear()">
+            clear
+        </button>
+
+      </div>
+    </div>
+
+    <div>
+      <ng-template #loading class="form-group col-12 text-center">
+        <div>
+          <button class="add-item-button"(click)="add(itemName.value,itemDescription.value,itemPrice.value,itemAmount.value);">
+              new
+          </button>
+        
+        <button class="clear-item-button"(click)="clear()">
+             clear
+        </button>
+      </div>
+      </ng-template>
+    </div>
+  </div>
+
+</div>
+
+
+

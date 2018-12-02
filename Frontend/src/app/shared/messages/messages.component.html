@@ -1,0 +1,16 @@
+
+<div  class="row">
+
+  <div class="col-2 spacing">
+    <h2>Messages</h2>
+  </div>
+  <div class="col-2 spacing">
+    <button class="clear" (click)="messageService.clear()">clear</button>
+  </div>
+<div class="col-2"></div>
+<div class="col-6">
+  <div *ngFor='let message of messageService.messages'  class="messages">
+    {{message}} 
+  </div>
+</div>
+</div>

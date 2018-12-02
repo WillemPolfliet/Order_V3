@@ -1,0 +1,22 @@
+.Field-container{
+    border: 0.1em black solid;    
+}
+.add-item-button{
+    margin-top:5em;
+    width: 20em;
+    height: 3em;
+    margin-left: -10em
+}
+.clear-item-button{
+    margin-top:5em;
+    width: 10em;
+    height: 2em;
+    position: absolute;
+    bottom: 0;
+}
+.image_card > p {
+    height: 18em;
+    width: 14em;
+    margin: auto;
+    border: 0.2em black solid;
+}

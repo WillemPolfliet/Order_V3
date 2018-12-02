@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Frontend",
+    "\\Frontend\\src",
+    "\\Frontend\\src\\app",
+    "\\Frontend\\src\\app\\featured",
+    "\\Frontend\\src\\app\\featured\\single-item",
+    "\\Frontend\\src\\app\\shared"
+  ],
+  "SelectedNode": "\\Frontend\\src\\app\\featured\\single-item\\single-item.component.html",
+  "PreviewInSolutionExplorer": false
+}
