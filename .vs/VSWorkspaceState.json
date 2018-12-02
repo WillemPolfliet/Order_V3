@@ -1,13 +1,17 @@
 {
   "ExpandedNodes": [
     "",
+    "\\Backend",
+    "\\Backend\\Order_api",
+    "\\Backend\\Order_api\\Controllers",
+    "\\Backend\\Order_api\\Controllers\\Items",
     "\\Frontend",
     "\\Frontend\\src",
     "\\Frontend\\src\\app",
     "\\Frontend\\src\\app\\featured",
     "\\Frontend\\src\\app\\featured\\single-item",
-    "\\Frontend\\src\\app\\shared"
+    "\\Frontend\\src\\assets"
   ],
-  "SelectedNode": "\\Frontend\\src\\app\\featured\\single-item\\single-item.component.html",
+  "SelectedNode": "\\Backend\\Order_api\\Controllers\\Items\\ItemsController.cs",
   "PreviewInSolutionExplorer": false
 }

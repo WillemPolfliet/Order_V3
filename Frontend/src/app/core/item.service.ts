@@ -16,7 +16,8 @@ const httpOptions = {
 
 export class ItemService {
 
-  private ItemsUrl = 'http://10.20.0.83:57340/api/Items'
+  // private ItemsUrl = 'http://10.20.0.83:57341/api/Items'
+  private ItemsUrl = 'http://localhost:57341/api/Items'
   private log(message: string) {    
     this.messageService.add(`ItemService: ${message}`);  
   }
@@ -41,7 +42,6 @@ export class ItemService {
       );
   }
 
-
   getSingleItem(id: string): Observable<ItemDetail> {  
     const url = `${this.ItemsUrl}/${id}`;
     return this.http.get<ItemDetail>(url)
@@ -53,7 +53,8 @@ export class ItemService {
   }
 
   updateItem (item: ItemDetail): Observable<any> {
-    return this.http.put(this.ItemsUrl, item, httpOptions).pipe(
+    const url = `${this.ItemsUrl}/${item.id}`;
+    return this.http.put(url, item, httpOptions).pipe(
       tap(_ => this.log(`updated item id=${item.id}`)),
       catchError(this.handleError<any>('updateItem'))
     );

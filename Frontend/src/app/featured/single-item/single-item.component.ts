@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ItemService } from '../../core/item.service';
 import { ItemDetail } from 'src/app/core/classes/item_detail';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable, of, observable } from 'rxjs';
 
 @Component({
   selector: 'app-single-item',
@@ -33,8 +33,10 @@ export class SingleItemComponent implements OnInit {
   }
 
   clear(){
-   this.givenItem$ =null;
+   this.givenItem$ = new Observable<ItemDetail>();
   }
+
+
   add(name: string, description: string, price:string, amount:string) :void {
     name = name.trim(); 
     description = description.trim();
@@ -51,6 +53,23 @@ export class SingleItemComponent implements OnInit {
    
     const newItem: ItemDetail = {name: name, description:description,price : parseFloat(price),amountOfStock: parseFloat(amount), id: null, stockUrgency:null};
     this.itemService.addItem(newItem).subscribe();        
+  }
+
+  update(name: string, description: string, price:string, amount:string, givenid:string) :void{
+    name = name.trim(); 
+    description = description.trim();
+    price =price.trim();
+    amount = amount.trim();
+ 
+    if (parseFloat(price) == NaN||parseFloat(amount) == NaN|| !name || !description){  
+      return;
+      //fix error ofzo?
+    }   
+    if( parseFloat(price) <= 0 || parseFloat(amount) <=0){ 
+      return;
+    }
+    const newItem: ItemDetail = {name: name, description:description,price : parseFloat(price),amountOfStock: parseFloat(amount), id: givenid, stockUrgency:null};
+    this.itemService.updateItem(newItem).subscribe();      
   }
 
   

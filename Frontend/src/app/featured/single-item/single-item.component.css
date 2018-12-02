@@ -3,16 +3,16 @@
 }
 .add-item-button{
     margin-top:5em;
+    margin-left: -10em;     
     width: 20em;
     height: 3em;
-    margin-left: -10em
+    margin-right: 0.2em
 }
-.clear-item-button{
-    margin-top:5em;
-    width: 10em;
-    height: 2em;
+.clear-item-button{ 
     position: absolute;
-    bottom: 0;
+    bottom: 1em;    
+    width: 10em;
+    height: 2em;  
 }
 .image_card > p {
     height: 18em;
