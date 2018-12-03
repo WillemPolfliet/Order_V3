@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { ItemService } from '../../core/item.service';
+import { ItemService } from '../../../core/item.service';
 import { ItemDetail } from 'src/app/core/classes/item_detail';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of, observable } from 'rxjs';
 
 @Component({
-  selector: 'app-single-item',
-  templateUrl: './single-item.component.html',
-  styleUrls: ['./single-item.component.css']
+  selector: 'app-item-single',
+  templateUrl: './item-single.component.html',
+  styleUrls: ['./item-single.component.css']
 })
-export class SingleItemComponent implements OnInit {
+export class ItemSingleComponent implements OnInit {
   givenItem$: Observable<ItemDetail>;
 
 

@@ -1,8 +1,8 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { ItemDetail } from '../../core/Classes/item_detail';
-import { ItemService } from '../../core/item.service';
+import { ItemDetail } from '../../../core/Classes/item_detail';
+import { ItemService } from '../../../core/item.service';
 
 @Component({
   selector: 'app-item-search',
