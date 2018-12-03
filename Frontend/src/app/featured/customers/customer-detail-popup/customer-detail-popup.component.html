@@ -1,18 +1,37 @@
-<!-- <a href="javascript:void(0)" (click)="staffModal.open()">Staff A</a><br />
-  <a href="javascript:void(0)" (click)="staffModal.open()">Staff B</a><br />
-  <a href="javascript:void(0)" (click)="staffModal.open()">Staff C</a><br />
-  
-  <ngx-smart-modal #staffModal target="#modal_root" identifier="staffModal" (onOpen)="popped=true" (onClose)="popped=false" >
-    <div *ngIf="popped">
-      <h1>Staff's detail</h1>
-      <div>
-        Staff's title <br />
-        Staff's info A <br />
-        Staff's info B <br />
-        <hr />
-        <app-department></app-department>
-      </div>
-    
-      <button (click)="staffModal.close()">Close</button>
+<div [@dialog] *ngIf="visible" class="dialog">
+    <button *ngIf="closable" (click)="close()" aria-label="Close" class="dialog__close-btn">X</button>
+        
+        
+    <div class="row col-12 text-center">
+        <h1>Details of customer</h1>
     </div>
-  </ngx-smart-modal> -->
+
+    <div class="row col-12 ">
+        <div class="col-4">
+            <h3>id: </h3>
+        </div> 
+           
+        <div class="col-8">
+            <h5> {{value.id}} </h5>
+        </div> 
+
+        <div class="col-4">
+                <h3>FirstName: </h3>
+        </div>                
+        <div class="col-8">
+                <h5> {{value.firstName}} </h5>
+        </div> 
+
+        <div class="col-4">
+                    <h3>LastName: </h3>
+        </div>                    
+        <div class="col-8">
+                    <h5> {{value.LastName}} </h5>
+        </div> 
+    </div> 
+
+         
+       
+</div>
+    
+<div *ngIf="visible" class="overlay" (click)="close()"></div>

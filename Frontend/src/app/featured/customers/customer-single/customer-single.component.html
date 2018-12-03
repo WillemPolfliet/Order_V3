@@ -1,3 +1,67 @@
-<p>
-  customer-single works!
-</p>
+<!-- <div class="row">
+  <div  class="col-12">
+    <h5>Give the Id of the item to view set item</h5>
+    <app-item-search></app-item-search>
+    <button>show item by id</button>
+  </div>
+</div> -->
+
+
+<div>
+
+  <div class="row inputFields" *ngIf="(givenCustomer$ | async) as givenCustomer">
+
+    <div class="row form-group col-12 TitleField text-center">
+
+      <ng-container *ngIf="(givenCustomer.id != null); then IDTitle;  else NewTitle"></ng-container>       
+
+      <ng-template #IDTitle>
+        <div class="col-12">
+          <h2>Currently viewing item with id:</h2>
+          <h5> {{givenCustomer.id}}</h5>
+        </div>
+      </ng-template>
+      
+      <ng-template #NewTitle>
+        <div class="col-12">
+          <h2>U can create a new customer here</h2>
+        </div>
+      </ng-template>
+
+    </div>
+
+
+    <div class="row col-12">
+      
+      <ng-container *ngIf="(givenCustomer.id == null ); then UpdateExisting; else CreateNew"></ng-container>       
+
+      <ng-template #CreateNew>
+        <div class="form-group col-12 text-center">  
+          <div>
+            <button class="add-item-button btn-success" (click)="update();">
+              update
+            </button>
+            <button class="clear-item-button btn-danger" (click)="clear()">
+              clear
+            </button>
+          </div>  
+        </div>
+      </ng-template>
+
+      <ng-template #UpdateExisting>
+        <div class="form-group col-12 text-center">  
+          <div>
+            <button class="add-item-button btn-success" (click)="add();">
+              add
+            </button>
+            <button class="clear-item-button btn-danger" (click)="clear()">
+              clear
+            </button>
+          </div>  
+        </div>
+      </ng-template>
+
+    </div>
+  </div>
+</div>
+

@@ -8,7 +8,5 @@ export class CustomerDetail{
     lastName: string;
     email: Email; 
     address: Address;  
-    phoneNumber: PhoneNumber;  
-
-    
+    phoneNumber: PhoneNumber;     
 }

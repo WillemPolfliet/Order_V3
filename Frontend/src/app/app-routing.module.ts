@@ -5,6 +5,7 @@ import { HomeComponent } from './featured/home/home.component';
 import { ItemSingleComponent} from './featured/items/item-single/item-single.component'
 import { CustomerListComponent} from './featured/customers/customer-list/customer-list.component'
 import { CustomerSingleComponent} from './featured/customers/customer-single/customer-single.component'
+import { CustomerDetailPopupComponent} from './featured/customers/customer-detail-popup/customer-detail-popup.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/Home', pathMatch: 'full' },
@@ -15,8 +16,9 @@ const routes: Routes = [
   { path: 'SingleItem/:id', component: ItemSingleComponent },
   
   { path: 'CostumerList', component: CustomerListComponent },
+  { path: 'CustomerDetailPopUp', component:  CustomerDetailPopupComponent},
   { path: 'SingleCustomer', component: CustomerSingleComponent },
-  { path: 'SingleCustomer/:id ', component: CustomerSingleComponent }
+  { path: 'SingleCustomer/:id', component: CustomerSingleComponent }
 
 ];
 @NgModule({

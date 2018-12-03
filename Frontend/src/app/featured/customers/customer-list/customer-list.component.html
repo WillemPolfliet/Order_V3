@@ -24,13 +24,15 @@
           <th class="nameClass" colspan="2"></th>
     </tr>        
     <tr *ngFor="let customer of customersToPage">
-      <td class="idClass" >{{customer.id}}</td>
-      <td class="nameClass">{{customer.firstName}}</td>
-      <td class="nameClass">{{customer.lastName}}</td>
-      <td class="button"><button routerLink="/SingleItem" class="btn-primary"> View </button></td>
-      <td class="button"><button routerLink="/SingleItem" class="btn-success"> Edit </button></td>
+        <td class="idClass" >{{customer.id}}</td>
+        <td class="nameClass">{{customer.firstName}}</td>
+        <td class="nameClass">{{customer.lastName}}</td>
+        <td class="button"><button (click)="showDialog = !showDialog; value = customer" class="btn-primary"> View </button></td>      
+        <td class="button"><button routerLink="/SingleCustomer/{{customer.id}}" class="btn-success"> Edit </button></td>
     </tr>  
 </table>
-
 </div>
+
+<app-customer-detail-popup [(visible)]="showDialog" [(value)] = "value" ></app-customer-detail-popup>
+
 
