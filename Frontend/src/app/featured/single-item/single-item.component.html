@@ -12,13 +12,15 @@
 
     <div class="row form-group col-12 TitleField text-center">
 
-      <div *ngIf="(givenItem.id != null) else NewTitle">
+      <div class="col-12" *ngIf="(givenItem.id != null) else NewTitle">
         <h2>Currently viewing item with id:</h2>
         <h5> {{givenItem.id}}</h5>
       </div>
 
       <ng-template #NewTitle>
-        <h2>U can create a new item here, you wich, server is down...</h2>
+        <div class="col-12">
+          <h2>U can create a new item here, you wich, server is down...</h2>
+        </div>
       </ng-template>
 
     </div>
@@ -60,14 +62,14 @@
         <div class="col-6">
           <div class="form-group">
             <label for="ItemPriceInputField">Item Price</label>
-            <input type="text" class="form-control item-price-input" placeholder="Price" value="{{givenItem.price}}" #itemPrice>
+            <input type="number" class="form-control item-price-input" placeholder="Price" value="{{givenItem.price}}" #itemPrice>
           </div>
         </div>
 
         <div class="col-6">
           <div class="form-group">
             <label for="ItemAmountInputField">Amount in stock</label>
-            <input type="text" class="form-control item-amount-input" placeholder="Amount in stock" value="{{givenItem.amountOfStock}}" #itemAmount>
+            <input type="number" step="0.01" class="form-control item-amount-input" placeholder="Amount in stock" value="{{givenItem.amountOfStock}}" #itemAmount>
           </div>
         </div>
 
@@ -75,39 +77,39 @@
 
     </div>
 
-    <div class="row">
+    <div class="row col-12">
+      
+        <ng-container *ngIf="(givenItem.id == null ); then UpdateExisting; else CreateNew"></ng-container> 
+      
 
-      <div class="col-12 text-center">
 
-        <div *ngIf="(givenItem.id == null ) else updateButton">
+      <ng-template #CreateNew>
+        <div class="form-group col-12 text-center">  
+          <div>
+            <button class="add-item-button btn-success" (click)="update(itemName.value,itemDescription.value,itemPrice.value,itemAmount.value,givenItem.id);">
+              update
+            </button>
+            <button class="clear-item-button btn-danger" (click)="clear()">
+              clear
+            </button>
+          </div>  
+        </div>
+      </ng-template>
 
-          <div class="form-group">
+      <ng-template #UpdateExisting>
+        <div class="form-group col-12 text-center">  
+          <div>
             <button class="add-item-button btn-success" (click)="add(itemName.value,itemDescription.value,itemPrice.value,itemAmount.value);">
               add
             </button>
             <button class="clear-item-button btn-danger" (click)="clear()">
               clear
             </button>
-          </div>
-
+          </div>  
         </div>
+      </ng-template>
 
-        <ng-template #updateButton>
-          <div class="form-group">
-
-            <div>
-              <button class="add-item-button btn-success" (click)="update(itemName.value,itemDescription.value,itemPrice.value,itemAmount.value,givenItem.id);">
-                update
-              </button>
-              <button class="clear-item-button btn-danger" (click)="clear()">
-                clear
-              </button>
-            </div>
-
-          </div>
-        </ng-template>
-
-      </div>
     </div>
   </div>
 </div>
+

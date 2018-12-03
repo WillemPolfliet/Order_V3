@@ -24,7 +24,7 @@ export class SingleItemComponent implements OnInit {
 
     const id = this.route.snapshot.paramMap.get('id');
     if(id ==null){
-      this.givenItem$ = of(new ItemDetail());
+   this. clear();
     }
     else{
       this.givenItem$ = this.itemService.getSingleItem(id);
@@ -33,7 +33,7 @@ export class SingleItemComponent implements OnInit {
   }
 
   clear(){
-   this.givenItem$ = new Observable<ItemDetail>();
+   this.givenItem$ = of(new ItemDetail());
   }
 
 

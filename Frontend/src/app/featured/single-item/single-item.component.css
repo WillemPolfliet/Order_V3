@@ -10,7 +10,7 @@
 }
 .clear-item-button{ 
     position: absolute;
-    bottom: 1em;    
+    bottom: 0em;    
     width: 10em;
     height: 2em;  
 }
@@ -19,4 +19,7 @@
     width: 14em;
     margin: auto;
     border: 0.2em black solid;
+}
+.TitleField{
+    margin-bottom:4em; 
 }
