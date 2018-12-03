@@ -1,16 +1,21 @@
 <h2>My Items</h2>
 
 <div class="row">
-  <div  class="col-6">
+
+  <div  class="col-6 text-center">
     <h5>type to search for an item</h5>
-    <app-item-search></app-item-search>
+    <app-search></app-search>
     <!-- (searchTerm)="" -->
   </div>
-  <div  class="col-6">
-    <a routerLink="/SingleItem">SingleItem</a> 
-    
+
+  <div  class="col-6 text-center">
+    <button routerLink="/SingleItem" class="createNew btn-success"> 
+    Create new Item
+    </button>    
   </div>
+
 </div>
+
 <div class="row">
 <div  class="text-center col-12">
   <span *ngFor="let item of items  |paginate: { itemsPerPage: 6, currentPage: p }; let i = index">

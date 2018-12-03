@@ -1,0 +1,36 @@
+<div class="row titleSpace">
+
+    <div class="col-6 text-center">
+        <h2>List of all customers</h2>
+    </div>
+    
+    <div class="col-3 text-right">
+      <app-search></app-search>
+      <!-- (searchTerm)="" -->
+    </div>
+    
+    <div class="col-3 text-left">
+        <button routerLink="/SingleCustomer" class="btn-success CreateNew"> New customer </button>
+    </div>
+ 
+</div>
+
+<div class="row col-12">
+  <table >
+    <tr class="rowClass">
+          <th class="idClass" >ID</th>
+          <th class="nameClass">firstName</th>
+          <th class="nameClass">lastName</th>
+          <th class="nameClass" colspan="2"></th>
+    </tr>        
+    <tr *ngFor="let customer of customers">
+      <td class="idClass" >{{customer.id}}</td>
+      <td class="nameClass">{{customer.firstName}}</td>
+      <td class="nameClass">{{customer.lastName}}</td>
+      <td class="button"><button routerLink="/SingleItem" class="btn-primary"> View </button></td>
+      <td class="button"><button routerLink="/SingleItem" class="btn-success"> Edit </button></td>
+    </tr>  
+</table>
+
+</div>
+

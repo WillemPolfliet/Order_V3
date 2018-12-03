@@ -1,16 +1,15 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { ItemDetail } from '../../../core/Classes/item_detail';
-import { ItemService } from '../../../core/item.service';
-
+import { ItemDetail } from '../../core/Classes/item_detail';
+import { ItemService } from '../../core/item.service';
 @Component({
-  selector: 'app-item-search',
-  templateUrl: './item-search.component.html',
-  styleUrls: ['./item-search.component.css']
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.css']
 })
-export class ItemSearchComponent implements OnInit {
-  
+export class SearchComponent implements OnInit {
+
   items_FullList: Observable<ItemDetail[]>;
   items$: Observable<ItemDetail[]>;
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, filter, tap, map } from 'rxjs/operators';
+import { catchError, tap, map } from 'rxjs/operators';
 import { MessagesService } from './messages.service';
 
 import  { ItemDetail } from './classes/item_detail'
@@ -74,12 +74,5 @@ export class ItemService {
           itemName.name === searchTerm)
         )
       );
-
   }
-  
-
-  
-  
-
-  
 }

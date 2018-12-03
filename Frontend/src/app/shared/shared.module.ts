@@ -5,10 +5,14 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SearchComponent } from './search/search.component';
+// import { NgxSmartModalModule } from 'ngx-smart-modal';
 
 @NgModule({
   declarations: [
-    MessagesComponent
+    MessagesComponent,
+    SearchComponent,    
+    // NgxSmartModalModule
   ],
   imports: [       
     AppRoutingModule,
@@ -22,7 +26,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     CommonModule,
     NgxPaginationModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SearchComponent,
+    // NgxSmartModalModule
   ]
 })
 export class SharedModule { }

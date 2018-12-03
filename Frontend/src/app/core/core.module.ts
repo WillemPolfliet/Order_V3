@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule }    from '@angular/common/http';
 import { ItemService } from './item.service';
 import { MessagesService } from './messages.service';
+import { CustomerService } from './customer.service';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { MessagesService } from './messages.service';
   providers: [
     ItemService,
     MessagesService,
+    CustomerService
    //services!
   ]
 })

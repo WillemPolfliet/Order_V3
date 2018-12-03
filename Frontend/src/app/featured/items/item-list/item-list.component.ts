@@ -21,18 +21,6 @@ export class ItemListComponent implements OnInit {
   getAllItems(): void {
     this.itemService.getAllItems()
     .subscribe(items => this.items = items);
-  }
-
-  // add(name: string): void {
-  //   name = name.trim();
-
-  //   if (!name) { 
-  //     return; 
-  //   }
-  //   this.itemService.addItem({ name } as ItemDetail)
-  //     .subscribe(item => {
-  //       this.items.push(item);
-  //     });
-  // }
+  } 
 
 }

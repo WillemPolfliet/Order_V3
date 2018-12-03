@@ -1,0 +1,32 @@
+
+table {
+    margin:  auto;
+    border: 0.3em black solid; 
+    border-collapse: collapse;
+}
+th{
+    padding: 1.2em; 
+    border-bottom: 0.2em black solid;
+}
+td{
+    padding: 0.75em; 
+    border-bottom: 0.2em black dashed;
+}
+
+.idClass{       
+    width: 25em;
+}
+.nameClass {    
+    width: 10em;
+}
+.button{
+    width: 4em;
+}
+.titleSpace{
+    margin-bottom: 2em;
+}
+.CreateNew{
+    margin: auto;
+    height: 3em;
+    width: 10em;
+}
