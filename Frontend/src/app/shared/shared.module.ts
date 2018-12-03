@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SearchComponent } from './search/search.component';
+import { CoreModule } from '../core/core.module';
 // import { NgxSmartModalModule } from 'ngx-smart-modal';
 
 @NgModule({
@@ -19,14 +20,14 @@ import { SearchComponent } from './search/search.component';
     RouterModule,
     CommonModule,
     NgxPaginationModule,
-    ReactiveFormsModule
+    CoreModule
   ],
   exports: [
     MessagesComponent,
     RouterModule,
     CommonModule,
     NgxPaginationModule,
-    ReactiveFormsModule,
+    CoreModule,
     SearchComponent,
     // NgxSmartModalModule
   ]

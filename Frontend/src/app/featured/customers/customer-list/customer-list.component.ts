@@ -11,6 +11,8 @@ import  { CustomerService } from '../../../core/customer.service'
 export class CustomerListComponent implements OnInit {
 
   customers: CustomerDetail[];
+  customersToPage: CustomerDetail[];
+  
   constructor(private customerService: CustomerService) {     
   }
 
@@ -20,7 +22,13 @@ export class CustomerListComponent implements OnInit {
  
   getAllCustomers(): void {
     this.customerService.getAllCustomers()
-    .subscribe(customerList => this.customers = customerList);
+    .subscribe(customerList => {
+      this.customers = customerList; 
+      this.customersToPage = customerList;
+    });
   }
 
+  seachByTitle(givenSearchTerm) {
+    this.customersToPage = this.customerService.searchItem(givenSearchTerm,this.customers);
+  }
 }

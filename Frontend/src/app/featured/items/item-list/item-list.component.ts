@@ -11,6 +11,7 @@ export class ItemListComponent implements OnInit {
 
   p: number = 1;
   items: ItemDetail[];
+  itemsToPage: ItemDetail[];
   constructor(private itemService: ItemService) {     
   }
 
@@ -20,7 +21,14 @@ export class ItemListComponent implements OnInit {
  
   getAllItems(): void {
     this.itemService.getAllItems()
-    .subscribe(items => this.items = items);
+    .subscribe(items => {
+      this.items = items; 
+      this.itemsToPage = items;
+    });
+    
   } 
 
+  seachByTitle(givenSearchTerm) {
+    this.itemsToPage = this.itemService.searchItem(givenSearchTerm,this.items);
+  }
 }

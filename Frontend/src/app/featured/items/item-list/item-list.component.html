@@ -4,8 +4,8 @@
 
   <div  class="col-6 text-center">
     <h5>type to search for an item</h5>
-    <app-search></app-search>
-    <!-- (searchTerm)="" -->
+    <app-search  (value)="seachByTitle($event)"></app-search>   
+    <!-- [useEnter]="true" -->
   </div>
 
   <div  class="col-6 text-center">
@@ -18,7 +18,7 @@
 
 <div class="row">
 <div  class="text-center col-12">
-  <span *ngFor="let item of items  |paginate: { itemsPerPage: 6, currentPage: p }; let i = index">
+  <span *ngFor="let item of itemsToPage  |paginate: { itemsPerPage: 6, currentPage: p }; let i = index">
       <a routerLink="/SingleItem/{{item.id}}" class="btn cards_markup">
         <div class="card card_styling" >          
           <div class="card-body"> 

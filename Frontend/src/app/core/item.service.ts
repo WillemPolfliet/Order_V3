@@ -67,12 +67,10 @@ export class ItemService {
     );
   }
 
-  searchItem (searchTerm:string,listOfItems: Observable<ItemDetail[]>): Observable<ItemDetail[]>{
-    return listOfItems.pipe(
-      map(items => 
-        items.filter(itemName => 
-          itemName.name === searchTerm)
-        )
-      );
+  searchItem (searchTerm:string,listOfItems: ItemDetail[]): ItemDetail[]{
+    if(!searchTerm){
+      return listOfItems;
+    }
+    return listOfItems.filter(item => item.name.toLowerCase().includes(searchTerm.toLowerCase()));          
   }
 }

@@ -1,7 +1,6 @@
-import { Component, OnInit,Input } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { ItemDetail } from '../../core/Classes/item_detail';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ItemService } from '../../core/item.service';
 @Component({
   selector: 'app-search',
@@ -10,39 +9,41 @@ import { ItemService } from '../../core/item.service';
 })
 export class SearchComponent implements OnInit {
 
-  items_FullList: Observable<ItemDetail[]>;
-  items$: Observable<ItemDetail[]>;
-
   @Input() useEnter: boolean;
+  @Output() value: EventEmitter<string>;
 
-  private searchTerms = new Subject<string>();  
+  searchBox : FormControl;
 
+  constructor(private itemService: ItemService) {
+    this.value = new EventEmitter();
+    this.searchBox = new FormControl();
+  }
 
-  constructor(private itemService: ItemService) {}
-
-// eventemitter
-  // search(term: string): void {
-  //   this.searchTerms.next(term);
-  // }
-
-
-   ngOnInit() {
-     // observable from enter key
-
-     // observable from search terms
-
-    // if use enter
-      // merge observables (only emit when pressing enter)
-    // else
-      // emit all values
-
-
-  //   this.items_FullList = this.itemService.getAllItems();
-
-  //   this.items$ = this.searchTerms.pipe(
-  //     debounceTime(300),
-  //     distinctUntilChanged(),
-  //     switchMap((term: string) => this.itemService.searchItem(term,this.items_FullList))
-    //);
+  ngOnInit() {
+    this.searchBox.valueChanges.pipe(
+      debounceTime(300),
+      distinctUntilChanged())
+    .subscribe(givenValue => this.value.emit(givenValue));    
   }
 }
+
+// const enter$ = fromEvent(document, 'keyup').pipe(filter((event: KeyboardEvent) => event.keyCode === 13));
+// const search$ = this.useEnter 
+//   ? enter$.pipe(switchMap(_ => this.searchBox.valueChanges)) 
+//   : this.searchBox.valueChanges;
+
+// search$.pipe(
+//   debounceTime(300),
+//   distinctUntilChanged())
+// .subscribe(givenValue => this.value.emit(givenValue));    
+
+
+
+// observable from enter key
+
+  // observable from search terms
+
+ // if use enter
+   // merge observables (only emit when pressing enter)
+ // else
+   // emit all values

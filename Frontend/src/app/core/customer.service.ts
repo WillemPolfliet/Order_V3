@@ -69,6 +69,11 @@ export class CustomerService {
     );
   }
 
-  
+  searchItem (searchTerm:string,listOfItems: CustomerDetail[]): CustomerDetail[]{
+    if(!searchTerm){
+      return listOfItems;
+    }
+    return listOfItems.filter(item => item.lastName.toLowerCase().includes(searchTerm.toLowerCase()));          
+  }
 
 }

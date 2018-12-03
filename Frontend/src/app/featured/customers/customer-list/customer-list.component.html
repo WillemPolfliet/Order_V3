@@ -5,7 +5,7 @@
     </div>
     
     <div class="col-3 text-right">
-      <app-search></app-search>
+      <app-search (value)="seachByTitle($event)"></app-search>
       <!-- (searchTerm)="" -->
     </div>
     
@@ -23,7 +23,7 @@
           <th class="nameClass">lastName</th>
           <th class="nameClass" colspan="2"></th>
     </tr>        
-    <tr *ngFor="let customer of customers">
+    <tr *ngFor="let customer of customersToPage">
       <td class="idClass" >{{customer.id}}</td>
       <td class="nameClass">{{customer.firstName}}</td>
       <td class="nameClass">{{customer.lastName}}</td>
