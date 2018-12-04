@@ -8,7 +8,10 @@ body {
     margin: 2em;
     font-size: 1em
 }
-  
+.scrollThis{
+    overflow-y:scroll; 
+    height:6em
+}
 .messages{
     font-size: 0.6em;
     text-align: left;

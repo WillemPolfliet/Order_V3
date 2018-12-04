@@ -32,7 +32,8 @@
 
 
 
-    <div class="row col-12" [formGroup]="customerInput">
+    <div class="row col-12" [formGroup]="customerForm">
+        <input type="text" class="form-control" formControlName="id" hidden>
 
         <div class="col-1"></div>
 
@@ -78,7 +79,7 @@
               <ng-template #CreateNew>
                   <div class="form-group col-12 text-center">  
                     <div>
-                      <button class="add-item-button btn-success" (click)="update(customerInput.value)">
+                      <button class="add-item-button btn-success" (click)="update(customerForm.value)">
                         update
                       </button>
                       <button class="clear-item-button btn-danger" (click)="clear()">
@@ -91,7 +92,7 @@
                 <ng-template #UpdateExisting>
                   <div class="form-group col-12 text-center">  
                     <div>
-                      <button class="add-item-button btn-success" (click)="add(customerInput.value)">
+                      <button class="add-item-button btn-success" (click)="add(customerForm.value)">
                         add
                       </button>
                       <button class="clear-item-button btn-danger" (click)="clear()">

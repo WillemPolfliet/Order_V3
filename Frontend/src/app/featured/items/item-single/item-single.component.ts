@@ -3,6 +3,7 @@ import { ItemService } from '../../../core/item.service';
 import { ItemDetail } from 'src/app/core/classes/item_detail';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of, observable } from 'rxjs';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-item-single',
@@ -12,6 +13,14 @@ import { Observable, of, observable } from 'rxjs';
 export class ItemSingleComponent implements OnInit {
   givenItem$: Observable<ItemDetail>;
 
+  itemForm= new FormGroup({  
+    id : new FormControl(''),
+    name :new FormControl(''),  
+    description: new FormControl(''),  
+    price:new FormControl(''),  
+    amountOfStock:new FormControl(''),  
+    stockUrgency: new FormControl(''),  
+  })
 
   constructor(private itemService: ItemService, private route: ActivatedRoute) {   
   }
@@ -27,50 +36,26 @@ export class ItemSingleComponent implements OnInit {
    this. clear();
     }
     else{
-      this.givenItem$ = this.itemService.getSingleItem(id);
-    }
+      this.givenItem$ = this.itemService.getSingleItem(id);      
+      this.itemService.getSingleItem(id).subscribe(Item => this.itemForm.patchValue(Item));   
 
+    }
   }
 
   clear(){
-   this.givenItem$ = of(new ItemDetail());
+    this.givenItem$ = of(new ItemDetail());
+    this.itemForm.reset();
   }
 
 
-  add(name: string, description: string, price:string, amount:string) :void {
-    name = name.trim(); 
-    description = description.trim();
-    price =price.trim();
-    amount = amount.trim();
- 
-    if (parseFloat(price) == NaN||parseFloat(amount) == NaN|| !name || !description){  
-      return;
-      //fix error ofzo?
-    }   
-    if( parseFloat(price) <= 0 || parseFloat(amount) <=0){ 
-      return;
-    }
-   
-    const newItem: ItemDetail = {name: name, description:description,price : parseFloat(price),amountOfStock: parseFloat(amount), id: null, stockUrgency:null};
-    this.itemService.addItem(newItem).subscribe();        
-  }
+  add(value:ItemDetail){
+    this.itemService.addItem(value).subscribe(); 
+  }   
+  
 
-  update(name: string, description: string, price:string, amount:string, givenid:string) :void{
-    name = name.trim(); 
-    description = description.trim();
-    price =price.trim();
-    amount = amount.trim();
- 
-    if (parseFloat(price) == NaN||parseFloat(amount) == NaN|| !name || !description){  
-      return;
-      //fix error ofzo?
-    }   
-    if( parseFloat(price) <= 0 || parseFloat(amount) <=0){ 
-      return;
-    }
-    const newItem: ItemDetail = {name: name, description:description,price : parseFloat(price),amountOfStock: parseFloat(amount), id: givenid, stockUrgency:null};
-    this.itemService.updateItem(newItem).subscribe();      
-  }
+  update(value:ItemDetail){
+    this.itemService.updateItem(value).subscribe(); 
+  }   
 
   
 }

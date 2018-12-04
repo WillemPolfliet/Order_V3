@@ -20,7 +20,8 @@ export class CustomerSingleComponent implements OnInit {
 
   givenCustomer$: Observable<CustomerDetail>; 
 
-  customerInput= new FormGroup({
+  customerForm= new FormGroup({
+    id: new FormControl(''),
     firstName: new FormControl(''),
     lastName:new FormControl(''),
     email: new FormGroup({
@@ -54,14 +55,14 @@ export class CustomerSingleComponent implements OnInit {
     } 
     else{
       this.givenCustomer$ = this.customerService.getSingleCustomer(id);      
-      this.customerService.getSingleCustomer(id).subscribe(Customer => this.customerInput.patchValue(Customer));   
+      this.customerService.getSingleCustomer(id).subscribe(Customer => this.customerForm.patchValue(Customer));   
 
     }
   }
 
   clear(){
     this.givenCustomer$ = of(new CustomerDetail());
-    this.customerInput.reset();
+    this.customerForm.reset();
   }
 
 
@@ -70,8 +71,7 @@ export class CustomerSingleComponent implements OnInit {
   }   
   
 
-  update(value:CustomerDetail){
-    value.id = this.route.snapshot.paramMap.get('id');
+  update(value:CustomerDetail){    
     this.customerService.updateCustomer(value).subscribe(); 
   }
 

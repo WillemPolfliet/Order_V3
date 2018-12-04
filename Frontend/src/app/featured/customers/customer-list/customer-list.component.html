@@ -1,29 +1,34 @@
 <div class="row titleSpace">
 
-    <div class="col-6 text-center">
+    <div class="col-12 text-center">
         <h2>List of all customers</h2>
     </div>
-    
+</div>
+<div class="row titleSpace">
     <div class="col-3 text-right">
+        <h3>filter: </h3>
+    </div>
+
+    <div class="col-3 text-left">
       <app-search (value)="seachByTitle($event)"></app-search>
       <!-- (searchTerm)="" -->
     </div>
     
-    <div class="col-3 text-left">
+    <div class="col-5 text-center">
         <button routerLink="/SingleCustomer" class="btn-success CreateNew"> New customer </button>
     </div>
- 
+    <div class="col-1"></div> 
 </div>
 
-<div class="row col-12">
+<div class="row col-12 text-center">
   <table >
-    <tr class="rowClass">
+    <tr class="rowClass text-left">
           <th class="idClass" >ID</th>
           <th class="nameClass">firstName</th>
           <th class="nameClass">lastName</th>
           <th class="nameClass" colspan="2"></th>
     </tr>        
-    <tr *ngFor="let customer of customersToPage">
+    <tr *ngFor="let customer of customersToPage" class="text-left">
         <td class="idClass" >{{customer.id}}</td>
         <td class="nameClass">{{customer.firstName}}</td>
         <td class="nameClass">{{customer.lastName}}</td>

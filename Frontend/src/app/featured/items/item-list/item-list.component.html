@@ -1,20 +1,27 @@
-<h2>My Items</h2>
 
-<div class="row">
+<div class="row titleSpace">
 
-  <div  class="col-6 text-center">
-    <h5>type to search for an item</h5>
-    <app-search  (value)="seachByTitle($event)"></app-search>   
-    <!-- [useEnter]="true" -->
-  </div>
-
-  <div  class="col-6 text-center">
-    <button routerLink="/SingleItem" class="createNew btn-success"> 
-    Create new Item
-    </button>    
-  </div>
-
+    <div class="col-12 text-center">
+        <h2>My Items</h2>
+    </div>
 </div>
+<div class="row titleSpace">
+    <div class="col-3 text-right">
+        <h3>filter: </h3>
+    </div>
+
+    <div class="col-3 text-left">
+        <app-search  (value)="seachByTitle($event)"></app-search>   
+      <!-- (searchTerm)="" -->
+    </div>
+    
+    <div class="col-5 text-center">
+        <button routerLink="/SingleItem" class="createNew btn-success">Create new Item</button>    
+    </div>
+    <div class="col-1"></div> 
+</div>
+
+
 
 <div class="row">
 <div  class="text-center col-12">
