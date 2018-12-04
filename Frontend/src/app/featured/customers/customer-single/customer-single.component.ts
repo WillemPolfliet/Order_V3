@@ -9,6 +9,7 @@ import { map,tap } from 'rxjs/operators';
 import { Address } from 'src/app/core/classes/Address';
 import { Email } from 'src/app/core/classes/Email';
 import { PhoneNumber } from 'src/app/core/classes/PhoneNumber';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-customer-single',
@@ -17,12 +18,27 @@ import { PhoneNumber } from 'src/app/core/classes/PhoneNumber';
 })
 export class CustomerSingleComponent implements OnInit {
 
-  givenCustomer$: Observable<CustomerDetail>;
-  givenCustomerAddress$: Observable<Address>;
-  givenCustomerEmail$: Observable<Email>;
-  givenCustomerPhoneNumber$: Observable<PhoneNumber>;
+  givenCustomer$: Observable<CustomerDetail>; 
 
-
+  customerInput= new FormGroup({
+    firstName: new FormControl(''),
+    lastName:new FormControl(''),
+    email: new FormGroup({
+      localPart: new FormControl(''),
+      domain: new FormControl(''),
+      complete: new FormControl('')
+    }),
+    phoneNumber: new FormGroup({
+      number: new FormControl(''),
+      countryCallingCode: new FormControl('')
+    }),
+    address: new FormGroup({
+      streetName: new FormControl(''),
+      houseNumber: new FormControl(''),
+      country: new FormControl(''),
+      postalCode: new FormControl('')
+    })   
+  })
   constructor(private customerService: CustomerService, private route: ActivatedRoute) {   
   }
 
@@ -37,28 +53,26 @@ export class CustomerSingleComponent implements OnInit {
       this. clear();
     } 
     else{
-      this.givenCustomer$ = this.customerService.getSingleCustomer(id); 
-      this.givenCustomerAddress$ = this.givenCustomer$.pipe(map( (customer) => customer.address));
-      this.givenCustomerEmail$ = this.givenCustomer$.pipe(map( (customer) => customer.email));
-      this.givenCustomerPhoneNumber$ = this.givenCustomer$.pipe(map( (customer) => customer.phoneNumber));
-    }
+      this.givenCustomer$ = this.customerService.getSingleCustomer(id);      
+      this.customerService.getSingleCustomer(id).subscribe(Customer => this.customerInput.patchValue(Customer));   
 
+    }
   }
 
   clear(){
-    this.givenCustomer$ = of(new CustomerDetail());   
-    this.givenCustomerAddress$ = of(new Address());
-    this.givenCustomerEmail$ = of(new Email());
-    this.givenCustomerPhoneNumber$ = of(new PhoneNumber());
+    this.givenCustomer$ = of(new CustomerDetail());
+    this.customerInput.reset();
   }
 
 
-  add() {
-   
-  }
+  add(value:CustomerDetail){
+    this.customerService.addCustomer(value).subscribe(); 
+  }   
+  
 
-  update() {
-     
+  update(value:CustomerDetail){
+    value.id = this.route.snapshot.paramMap.get('id');
+    this.customerService.updateCustomer(value).subscribe(); 
   }
 
   

@@ -7,13 +7,13 @@
 </div> -->
 
 
-<div>
+<div *ngIf="((givenCustomer$) |async) as givenCustomer">
+ 
+  <div class="row inputFields" >
 
-  <div class="row inputFields" *ngIf="(givenCustomer$ | async) as givenCustomer" >
+     <div class="row form-group col-12 TitleField text-center">
 
-    <div class="row form-group col-12 TitleField text-center">
-
-      <ng-container *ngIf="(givenCustomer.id != null); then IDTitle;  else NewTitle"></ng-container>       
+      <ng-container *ngIf="(givenCustomer.id); then IDTitle;  else NewTitle;"></ng-container>       
 
       <ng-template #IDTitle>
         <div class="col-12">
@@ -28,11 +28,11 @@
         </div>
       </ng-template>
 
-    </div>
+    </div> 
 
 
 
-    <div class="row col-12" [formGroup]="CustomerInput">
+    <div class="row col-12" [formGroup]="customerInput">
 
         <div class="col-1"></div>
 
@@ -40,20 +40,20 @@
 
           <div class="col-12 CustomerElement">
                 <h5>FirstName: </h5>
-                <input type="text" class="form-control" placeholder="FirstName" value="{{givenCustomer.firstName}}"  formControlName="FirstName">
+                <input type="text" class="form-control" placeholder="FirstName" formControlName="firstName">
           </div>   
 
-          <div class="col-12 CustomerElement" *ngIf="(givenCustomerEmail$ | async) as email"  formGroupName="Email">
+          <div class="col-12 CustomerElement" formGroupName="email">
               <h5>Email: </h5>
-              <input type="text" class="form-control" placeholder="LocalPart" value="{{email.localPart}}" formControlName="LocalPart">
-              <input type="text" class="form-control" placeholder="Domain" value="{{email.domain}}" formControlName="Domain">
-              <input type="email" class="form-control" placeholder="Complete" value="{{email.complete}}" formControlName="Complete">
+              <input type="text" class="form-control" placeholder="LocalPart" formControlName="localPart">
+              <input type="text" class="form-control" placeholder="Domain" formControlName="domain">
+              <input type="email" class="form-control" placeholder="Complete" formControlName="complete">
           </div>
 
-          <div class="col-12 CustomerElement" *ngIf="(givenCustomerPhoneNumber$ | async) as phoneNumber" formGroupName="PhoneNumber">
+          <div class="col-12 CustomerElement" formGroupName="phoneNumber">
               <h5>Phonenumber: </h5>
-              <input type="num" class="form-control" placeholder="PhoneNumber" value="{{phoneNumber.number}}" formControlName="Number">
-              <input type="text" class="form-control" placeholder="CountryCallingCode" value="{{phoneNumber.countryCallingCode}}" formControlName="countryCallingCode">
+              <input type="num" class="form-control" placeholder="PhoneNumber" formControlName="number">
+              <input type="text" class="form-control" placeholder="CountryCallingCode" formControlName="countryCallingCode">
           </div>  
 
         </div>
@@ -62,23 +62,23 @@
 
             <div class="col-12 CustomerElement">
                 <h5>LastName: </h5>
-                <input type="text" class="form-control" placeholder="LastName" value="{{givenCustomer.lastName}}" formControlName="LastName">
+                <input type="text" class="form-control" placeholder="LastName" formControlName="lastName">
             </div>   
 
-            <div class="col-12 CustomerElement" *ngIf="(givenCustomerAddress$ | async) as address" formGroupName="Address">
+            <div class="col-12 CustomerElement" formGroupName="address">
                 <h5>Address: </h5>
-                <input type="text" class="form-control" placeholder="StreetName" value="{{address.streetName}}" formControlName="StreetName">
-                <input type="text" class="form-control" placeholder="StreetNumber" value="{{address.houseNumber}}" formControlName="StreetNumber">
-                <input type="text" class="form-control" placeholder="PostalCode" value="{{address.postalCode}}" formControlName="PostalCode">
-                <input type="text" class="form-control" placeholder="Country" value="{{address.country}}" formControlName="Country">
+                <input type="text" class="form-control" placeholder="StreetName" formControlName="streetName">
+                <input type="text" class="form-control" placeholder="HouseNumber" formControlName="houseNumber">
+                <input type="text" class="form-control" placeholder="PostalCode"  formControlName="postalCode">
+                <input type="text" class="form-control" placeholder="Country"  formControlName="country">
             </div>  
             <div class="col-12 formBtns">
-              <ng-container *ngIf="(givenCustomer.id == null ); then UpdateExisting; else CreateNew"></ng-container>  
+              <ng-container *ngIf="(givenCustomer.id); then CreateNew; else UpdateExisting;"></ng-container>  
               
               <ng-template #CreateNew>
                   <div class="form-group col-12 text-center">  
                     <div>
-                      <button class="add-item-button btn-success" (click)="update();">
+                      <button class="add-item-button btn-success" (click)="update(customerInput.value)">
                         update
                       </button>
                       <button class="clear-item-button btn-danger" (click)="clear()">
@@ -91,7 +91,7 @@
                 <ng-template #UpdateExisting>
                   <div class="form-group col-12 text-center">  
                     <div>
-                      <button class="add-item-button btn-success" (click)="add();">
+                      <button class="add-item-button btn-success" (click)="add(customerInput.value)">
                         add
                       </button>
                       <button class="clear-item-button btn-danger" (click)="clear()">
@@ -100,7 +100,7 @@
                     </div>  
                   </div>
                 </ng-template>
-          </div>  
+          </div>   
 
         </div>
 

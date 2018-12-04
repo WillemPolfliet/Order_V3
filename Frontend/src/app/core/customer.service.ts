@@ -54,7 +54,7 @@ export class CustomerService {
     );  
   }
 
-  updateItem (item: CustomerDetail): Observable<any> {
+  updateCustomer (item: CustomerDetail): Observable<any> {
     const url = `${this.CustomersUrl}/${item.id}`;
     return this.http.put(url, item, httpOptions).pipe(
       tap(_ => this.log(`updated item id=${item.id}`)),
@@ -62,7 +62,7 @@ export class CustomerService {
     );
   }
 
-  addItem (item: CustomerDetail): Observable<CustomerDetail> {
+  addCustomer (item: CustomerDetail): Observable<CustomerDetail> {
     return this.http.post<CustomerDetail>(this.CustomersUrl, item, httpOptions).pipe(
       tap((item: CustomerDetail) => this.log(`added item w/ id=${item.id}`)),
       catchError(this.handleError<CustomerDetail>('addItem'))
