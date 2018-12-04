@@ -22,7 +22,7 @@ import { CustomerDetail } from 'src/app/core/classes/customer_detail';
 export class CustomerDetailPopupComponent implements OnInit {
   @Input() closable = true;
   @Input() visible: boolean; 
-  @Input() value: CustomerDetail;   
+  @Input() customer: CustomerDetail;   
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor() { }

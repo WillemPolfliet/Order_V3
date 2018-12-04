@@ -32,3 +32,13 @@
     right: 8px;
     font-size: 1.2em;
 }
+.top{
+    border-bottom: 0.2em black solid;
+    margin: 1em 0em 3em 0em;
+}
+.item {
+    margin-top: 1.2em;
+}
+.item p{
+    margin-top: 0.4em;
+}

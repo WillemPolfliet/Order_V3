@@ -9,7 +9,7 @@
 
 <div>
 
-  <div class="row inputFields" *ngIf="(givenCustomer$ | async) as givenCustomer">
+  <div class="row inputFields" *ngIf="(givenCustomer$ | async) as givenCustomer" >
 
     <div class="row form-group col-12 TitleField text-center">
 
@@ -17,7 +17,7 @@
 
       <ng-template #IDTitle>
         <div class="col-12">
-          <h2>Currently viewing item with id:</h2>
+          <h2>Currently viewing customer with id:</h2>
           <h5> {{givenCustomer.id}}</h5>
         </div>
       </ng-template>
@@ -31,37 +31,89 @@
     </div>
 
 
-    <div class="row col-12">
-      
-      <ng-container *ngIf="(givenCustomer.id == null ); then UpdateExisting; else CreateNew"></ng-container>       
 
-      <ng-template #CreateNew>
-        <div class="form-group col-12 text-center">  
-          <div>
-            <button class="add-item-button btn-success" (click)="update();">
-              update
-            </button>
-            <button class="clear-item-button btn-danger" (click)="clear()">
-              clear
-            </button>
-          </div>  
-        </div>
-      </ng-template>
+    <div class="row col-12" [formGroup]="CustomerInput">
 
-      <ng-template #UpdateExisting>
-        <div class="form-group col-12 text-center">  
-          <div>
-            <button class="add-item-button btn-success" (click)="add();">
-              add
-            </button>
-            <button class="clear-item-button btn-danger" (click)="clear()">
-              clear
-            </button>
+        <div class="col-1"></div>
+
+        <div class="col-5">
+
+          <div class="col-12 CustomerElement">
+                <h5>FirstName: </h5>
+                <input type="text" class="form-control" placeholder="FirstName" value="{{givenCustomer.firstName}}"  formControlName="FirstName">
+          </div>   
+
+          <div class="col-12 CustomerElement" *ngIf="(givenCustomerEmail$ | async) as email"  formGroupName="Email">
+              <h5>Email: </h5>
+              <input type="text" class="form-control" placeholder="LocalPart" value="{{email.localPart}}" formControlName="LocalPart">
+              <input type="text" class="form-control" placeholder="Domain" value="{{email.domain}}" formControlName="Domain">
+              <input type="email" class="form-control" placeholder="Complete" value="{{email.complete}}" formControlName="Complete">
+          </div>
+
+          <div class="col-12 CustomerElement" *ngIf="(givenCustomerPhoneNumber$ | async) as phoneNumber" formGroupName="PhoneNumber">
+              <h5>Phonenumber: </h5>
+              <input type="num" class="form-control" placeholder="PhoneNumber" value="{{phoneNumber.number}}" formControlName="Number">
+              <input type="text" class="form-control" placeholder="CountryCallingCode" value="{{phoneNumber.countryCallingCode}}" formControlName="countryCallingCode">
           </div>  
+
         </div>
-      </ng-template>
+
+        <div class="col-5">
+
+            <div class="col-12 CustomerElement">
+                <h5>LastName: </h5>
+                <input type="text" class="form-control" placeholder="LastName" value="{{givenCustomer.lastName}}" formControlName="LastName">
+            </div>   
+
+            <div class="col-12 CustomerElement" *ngIf="(givenCustomerAddress$ | async) as address" formGroupName="Address">
+                <h5>Address: </h5>
+                <input type="text" class="form-control" placeholder="StreetName" value="{{address.streetName}}" formControlName="StreetName">
+                <input type="text" class="form-control" placeholder="StreetNumber" value="{{address.houseNumber}}" formControlName="StreetNumber">
+                <input type="text" class="form-control" placeholder="PostalCode" value="{{address.postalCode}}" formControlName="PostalCode">
+                <input type="text" class="form-control" placeholder="Country" value="{{address.country}}" formControlName="Country">
+            </div>  
+            <div class="col-12 formBtns">
+              <ng-container *ngIf="(givenCustomer.id == null ); then UpdateExisting; else CreateNew"></ng-container>  
+              
+              <ng-template #CreateNew>
+                  <div class="form-group col-12 text-center">  
+                    <div>
+                      <button class="add-item-button btn-success" (click)="update();">
+                        update
+                      </button>
+                      <button class="clear-item-button btn-danger" (click)="clear()">
+                        clear
+                      </button>
+                    </div>  
+                  </div>
+                </ng-template>
+          
+                <ng-template #UpdateExisting>
+                  <div class="form-group col-12 text-center">  
+                    <div>
+                      <button class="add-item-button btn-success" (click)="add();">
+                        add
+                      </button>
+                      <button class="clear-item-button btn-danger" (click)="clear()">
+                        clear
+                      </button>
+                    </div>  
+                  </div>
+                </ng-template>
+          </div>  
+
+        </div>
+
+        <div class="col-1"></div>
 
     </div>
+
+
+
+
+      
+
+    
   </div>
 </div>
 
